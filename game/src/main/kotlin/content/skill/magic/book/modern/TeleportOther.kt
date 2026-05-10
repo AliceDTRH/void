@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -71,15 +70,8 @@ class TeleportOther : Script {
             }
         }
 
-        combatPrepare("magic") { target ->
-            if (spell.startsWith("teleother")) {
-                if (target is NPC) {
-                    message("This spell can only be cast on other players.") // TODO proper message
-                }
-                false
-            } else {
-                true
-            }
+        combatPrepare("magic") {
+            !spell.startsWith("teleother")
         }
     }
 }

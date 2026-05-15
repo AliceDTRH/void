@@ -172,6 +172,12 @@ class Interfaces(
         return true
     }
 
+    fun sendPosition(id: String, component: String, x: Int? = null, y: Int? = null): Boolean {
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
+        player.client?.interfacePosition(comp.id, x ?: comp.baseX, y ?: comp.baseY)
+        return true
+    }
+
     fun sendSprite(id: String, component: String, sprite: Int): Boolean {
         val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         player.client?.interfaceSprite(comp.id, sprite)
